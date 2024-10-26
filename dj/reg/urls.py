@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import register, login_view  # Импортируем нужные функции
+from . import views
 
 urlpatterns = [
-    path('register/', register, name='register'),
-    path('login/', login_view, name='login'),  # Путь для авторизации
+    path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
 ]

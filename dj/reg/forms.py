@@ -1,67 +1,56 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
+from .models import User
 import re
-from django.contrib.auth.forms import AuthenticationForm
 
-class CustomUserCreationForm(forms.ModelForm):
-    full_name = forms.CharField(
-        label='ФИО',
-        max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': 'Введите ФИО'}),
-    )
-    
-    username = forms.CharField(
-        label='Логин',
-        max_length=20,
-        widget=forms.TextInput(attrs={'placeholder': 'Введите логин'}),
-    )
-    
-    password = forms.CharField(
-        label='Пароль',
-        max_length=20,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
-    )
-    
+class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(
-        label='Повторить пароль',
         max_length=20,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}),
+        label='Повторите пароль',
+        widget=forms.PasswordInput(),
+        required=True,
     )
-
+    
     class Meta:
         model = User
-        fields = ('username',)
-
+        fields = ['username', 'password', 'full_name']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+    
     def clean_full_name(self):
         full_name = self.cleaned_data.get('full_name')
-        if not re.match(r'^[А-Яа-яЁё\s\-]+$', full_name):
-            raise ValidationError('ФИО должно содержать только кириллицу, пробелы или дефисы.')
+        if not re.match(r'^[а-яА-ЯёЁ\s\-]+$', full_name):
+            raise forms.ValidationError("ФИО должно содержать только кириллицу, пробелы и дефисы.")
+        if len(full_name) > 50:
+            raise forms.ValidationError("ФИО не должно превышать 50 символов.")
         return full_name
-
-    def clean_password2(self):
-        password = self.cleaned_data.get('password')
-        password2 = self.cleaned_data.get('password2')
-        if password != password2:
-            raise ValidationError('Пароли не совпадают.')
-        return password2
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if User.objects.filter(username=username).exists():
-            raise ValidationError('Логин уже существует.')
+            raise forms.ValidationError("Этот логин уже используется.")
+        if len(username) > 20:
+            raise forms.ValidationError("Логин не должен превышать 20 символов.")
         return username
-    
 
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(
-        label='Логин',
-        widget=forms.TextInput(attrs={'placeholder': 'Введите логин'}),
-        max_length=20,
-    )
-    
-    password = forms.CharField(
-        label='Пароль',
-        widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
-        max_length=20,
-    )
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not password:
+            raise forms.ValidationError("Пароль является обязательным полем.")
+        if len(password) > 20:
+            raise forms.ValidationError("Пароль не должен превышать 20 символов.")
+        return password
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password2 = cleaned_data.get("password2")
+
+        if password and password2 and password != password2:
+            raise forms.ValidationError("Пароли не совпадают.")
+
+        return cleaned_data
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    password = forms.CharField(max_length=20, widget=forms.PasswordInput)

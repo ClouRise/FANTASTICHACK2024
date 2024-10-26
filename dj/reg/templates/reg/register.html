@@ -10,17 +10,13 @@
 <body>
     <div class="registration-form">
         <h2>Регистрация</h2>
-
-        <!-- Форма для регистрации -->
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <!-- Кнопка для завершения регистрации -->
             <button type="submit" class="btn">Зарегистрироваться</button>
         </form>
-
-        <!-- Форма для перехода на страницу авторизации без регистрации -->
-        <form action="{% url 'login' %}" method="get" style="margin-top: 10px;">
+        <!-- Кнопка для перехода на страницу авторизации -->
+        <form action="{% url 'login' %}" method="get">
             <button type="submit" class="btn">Уже есть аккаунт? Войти</button>
         </form>
     </div>
