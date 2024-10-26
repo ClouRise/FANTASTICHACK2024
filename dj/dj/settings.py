@@ -83,6 +83,14 @@ DATABASES = {
         'PASSWORD': '1234',  # Пароль
         'HOST': 'localhost',
         'PORT': '5432',
+    },
+        'second': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bd2',  # Имя базы данных
+        'USER': 'user2',   # Имя пользователя
+        'PASSWORD': '1234',  # Пароль
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
