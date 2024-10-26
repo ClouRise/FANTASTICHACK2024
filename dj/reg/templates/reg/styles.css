@@ -1,0 +1,116 @@
+@font-face {
+    font-family: gotham_bold;
+    src: url(./fonts/gotham_bold.otf);
+}
+@font-face {
+    font-family: gotham_book;
+    src: url(./fonts/gotham_book.otf);
+}
+@font-face {
+    font-family: gotham_light;
+    src: url(./fonts/gotham_light.otf);
+}
+@font-face {
+    font-family: gotham_medium;
+    src: url(./fonts/gotham_medium.otf);
+}
+
+.gotham-bold{
+    font-family: gotham_bold;
+}
+.gotham-book{
+    font-family: gotham_book;
+}
+.gotham-light{
+    font-family: gotham_light;
+}
+.gotham-medium{
+    font-family: gotham_medium;
+}
+
+body { 
+    display: flex;
+    min-height: 100vh; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #f9fafb;
+} 
+.form-control:focus{
+    border-color: #dee2e6;
+    box-shadow: none;
+}
+.card-body{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.card-header{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.form-label{
+    margin-bottom: 0.2rem;
+    margin-left: 0.3rem;
+}
+.enter-button{
+    border: none;
+    background-color: #A87FF3;
+}
+.enter-button:hover{
+    border: none;
+    background-color: #5E3A9E;
+}
+.enter-button:active{
+    border: none;
+    background-color: #925FF0!important;
+    box-shadow: 0px 0px 7px 1px #925FF0;
+}
+.enter-button:focus-visible{
+    border: none;
+    background-color: #925FF0!important;
+    box-shadow: none;
+}
+.button-heights{
+    line-height: 2;
+    border-radius: 10px;
+}
+.n-t{
+    color: #1C0C38;
+}
+.n-t:active{
+    color: #5E3A9E;
+}
+.n-t:hover{
+    color: #1C0C38;
+}
+.card{
+    border-radius: 20px;
+}
+.card-header{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.card-header:first-child{
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.form-control{
+    border: 2px solid #1C0C38;
+}
+.form-control:focus{
+    border-color: #A87FF3;
+}
+.card{
+    padding-bottom: 1.3rem;
+}
+.button-heights::placeholder{
+    color: #a1a1a1;
+}
+.btn-close:focus{
+    box-shadow: none;
+}
+.darkvi{
+    color: #1C0C38;
+}
+.shadow{
+    box-shadow: 0 0.5rem 1rem #1D005454!important;
+}
