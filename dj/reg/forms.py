@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
+from django.contrib.auth.forms import AuthenticationForm
 
 class CustomUserCreationForm(forms.ModelForm):
     full_name = forms.CharField(
@@ -50,3 +51,17 @@ class CustomUserCreationForm(forms.ModelForm):
         if User.objects.filter(username=username).exists():
             raise ValidationError('Логин уже существует.')
         return username
+    
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label='Логин',
+        widget=forms.TextInput(attrs={'placeholder': 'Введите логин'}),
+        max_length=20,
+    )
+    
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
+        max_length=20,
+    )
