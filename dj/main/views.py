@@ -1,3 +1,4 @@
+from django.db.models import Q  # Импортируйте Q для создания запросов
 import pandas as pd
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,11 +10,25 @@ def kanban_board(request):
     in_progress = Card.objects.filter(status='in_progress')
     done = Card.objects.filter(status='done')
 
+    # Обработка поиска
+    search_query = request.GET.get('search', '')
+    if search_query:
+        cards = Card.objects.filter(
+            Q(title__icontains=search_query) | 
+            Q(assignee__icontains=search_query) | 
+            Q(description__icontains=search_query)
+        )
+    else:
+        cards = Card.objects.all()
+
     return render(request, 'main/kanban_board.html', {
         'backlog': backlog,
         'in_progress': in_progress,
         'done': done,
+        'cards': cards,  # Передаем найденные карточки
+        'search_query': search_query,  # Передаем запрос поиска для отображения
     })
+
 
 def create_card(request):
     if request.method == 'POST':
