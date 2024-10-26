@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>{% if form.instance.pk %}Редактировать карточку{% else %}Создать карточку{% endif %}</h2>
-    <form method="post">
+    <form  method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">{% if form.instance.pk %}Сохранить изменения{% else %}Создать{% endif %}</button>
