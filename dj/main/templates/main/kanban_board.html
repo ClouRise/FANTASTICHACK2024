@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доска</title>
+</head>
+<body>
+    <h1>Kanban Доска</h1>
+
+    <a href="{% url 'create_card' %}">Создать новую карточку</a>
+
+    <div class="kanban-board">
+        <!-- Колонка Бэклог -->
+        <div class="kanban-column">
+            <h2>Бэклог</h2>
+            {% for card in backlog %}
+                <div class="kanban-card">
+                    <h3>{{ card.title }}</h3>
+                    <p>Исполнитель: {{ card.assignee }}</p>
+                    <p>{{ card.description }}</p>
+                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
+                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                </div>
+            {% empty %}
+                <p>Нет задач в Бэклоге.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Колонка В процессе -->
+        <div class="kanban-column">
+            <h2>В процессе</h2>
+            {% for card in in_progress %}
+                <div class="kanban-card">
+                    <h3>{{ card.title }}</h3>
+                    <p>Исполнитель: {{ card.assignee }}</p>
+                    <p>{{ card.description }}</p>
+                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
+                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                </div>
+            {% empty %}
+                <p>Нет задач в процессе выполнения.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Колонка Выполнено -->
+        <div class="kanban-column">
+            <h2>Выполнено</h2>
+            {% for card in done %}
+                <div class="kanban-card">
+                    <h3>{{ card.title }}</h3>
+                    <p>Исполнитель: {{ card.assignee }}</p>
+                    <p>{{ card.description }}</p>
+                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
+                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                </div>
+            {% empty %}
+                <p>Нет выполненных задач.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
