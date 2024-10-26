@@ -21,7 +21,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Замените 'home' на нужный URL после авторизации
+                return redirect('http://127.0.0.1:8000')  # Замените 'home' на нужный URL после авторизации
     else:
         form = LoginForm()
     return render(request, 'reg/login.html', {'form': form})
