@@ -28,13 +28,12 @@
     font-family: gotham_medium;
 }
 
-body { 
-    display: flex;
-    min-height: 100vh; 
-    justify-content: center; 
-    align-items: center; 
-    background-color: #f9fafb;
-} 
+body{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
 .form-control:focus{
     border-color: #dee2e6;
     box-shadow: none;
@@ -113,4 +112,18 @@ body {
 }
 .shadow{
     box-shadow: 0 0.5rem 1rem #1D005454!important;
+}
+a{
+    text-decoration: none;
+    font-size: 16pt;
+    color: white;
+    font-family: gotham_medium;
+    transition: 0.2s;
+}
+a:hover{
+    color: #A87FF3;
+    transition: 0.2s;
+}
+a:active{
+    color:#5E3A9E;
 }
