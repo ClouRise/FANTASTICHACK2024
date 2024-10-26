@@ -26,6 +26,45 @@
 .gotham-medium{
     font-family: gotham_medium;
 }
+.sun-editor input:focus, .sun-editor select:focus, .sun-editor textarea:focus {
+    border-color: rgb(51, 13, 78) !important;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #925ff042!important;
+    border: 1px solid #925FF0;
+    -webkit-box-shadow: 0 0 0 .2rem #edc7ff;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.se-dialog-form-footer{
+    display: none;
+}
+.modal-content {
+    box-shadow: 0px 3px 20px #57116454!important;
+}
+.sun-editor .se-btn-primary {
+    color: #925FF0!important;
+    background-color: white!important;
+    border: 2px solid #925FF0!important;
+    border-radius: 10px!important;
+    padding: 5px 10px!important;
+}
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-header {
+    height: 50px;
+    padding: 6px 15px;
+    border-bottom: 1px solid #e5e5e5;
+    border-radius: 15px!important;
+}
+.sun-editor .se-btn-primary:hover {
+    color: white!important;
+    background-color: #925FF0!important;
+    transition: all 0.1s ease-in-out
+}
+.se-btn-primary{
+    border: 2px solid #925FF0;
+    color: #925FF0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
 .add-task{
     color: #1C0C38;
     text-decoration: none;

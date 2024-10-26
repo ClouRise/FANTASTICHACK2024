@@ -37,7 +37,7 @@
                                     <div class="modal-dialog modal-dialog-centered" >
                                       <div class="modal-content" style="border-radius: 25px;">
                                         <div class="modal-header p-4" style="border-radius: 15px 15px 0 0 ;">
-                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Добавление задачи</h1>
+                                          <h1 class="modal-title fs-5 gotham-bold" style="font-size: 20px;" id="staticBackdropLabel">Добавление задачи</h1>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                         </div>
                                         <div class="modal-body p-4">
@@ -57,8 +57,7 @@
                                                 <div class="mb-4">
                                                     <p class="gotham-light mb-1">Этап:</p>
                                                     <select class="form-select" aria-label="Пример выбора по умолчанию">
-                                                        <option selected>Откройте это меню выбора</option>
-                                                        <option value="1">Беклог</option>
+                                                        <option selected value="1">Беклог</option>
                                                         <option value="2">В процессе</option>
                                                         <option value="3">Выполнено</option>
                                                       </select>
@@ -138,20 +137,18 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
     <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
     <!-- languages (Basic Language: English/en) -->
-    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ru.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-            /**
-    * ID : 'suneditor_sample'
-    * ClassName : 'sun-eidtor'
-    */
-    // ID or DOM object
-    const editor = SUNEDITOR.create((document.getElementById('cardDescription') || 'cardDescription'),{
-        // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
-        // Insert options
-        // Language global object (default: en)
-        lang: SUNEDITOR_LANG['ru']
-    });
+const editor = SUNEDITOR.create((document.getElementById('cardDescription') || 'cardDescription'),{
+    // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
+    // Insert options
+    // Language global object (default: en)
+    lang: SUNEDITOR_LANG['ru'],
+    buttonList: [
+        ['fontSize', 'link', 'bold', 'underline', 'italic', 'fontColor', 'list']
+    ]
+});
 
     </script>
 </body>
