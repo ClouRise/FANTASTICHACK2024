@@ -1,27 +1,31 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, LoginForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.urls import reverse
+from .forms import RegistrationForm, LoginForm
+from .models import User
 
+# Вьюха регистрации
 def register(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Перенаправление на страницу логина после успешной регистрации
+            return redirect('login')
     else:
-        form = CustomUserCreationForm()
+        form = RegistrationForm()
     return render(request, 'reg/register.html', {'form': form})
+
+# Вьюха авторизации
 def login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Замените 'home' на нужный URL после авторизации
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = User.objects.filter(username=username, password=password).first()
+            if user:
+                return redirect('http://127.0.0.1:8000')  # Переадресация на приложение 'main'
+            else:
+                form.add_error(None, 'Неверный логин или пароль.')
     else:
         form = LoginForm()
     return render(request, 'reg/login.html', {'form': form})
