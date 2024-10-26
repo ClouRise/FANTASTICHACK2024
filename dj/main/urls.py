@@ -1,9 +1,10 @@
 from django.urls import path
-from . import views
+from .views import kanban_board, create_card, edit_card, delete_card, export_cards_to_excel
 
 urlpatterns = [
-    path('', views.kanban_board, name='kanban_board'),
-    path('create/', views.create_card, name='create_card'),
-    path('edit/<int:pk>/', views.edit_card, name='edit_card'),   # URL для редактирования карточки
-    path('delete/<int:pk>/', views.delete_card, name='delete_card'),  # URL для удаления карточки
+    path('', kanban_board, name='kanban_board'),
+    path('create/', create_card, name='create_card'),
+    path('edit/<int:pk>/', edit_card, name='edit_card'),
+    path('delete/<int:pk>/', delete_card, name='delete_card'),
+    path('export/', export_cards_to_excel, name='export_cards_to_excel'),
 ]

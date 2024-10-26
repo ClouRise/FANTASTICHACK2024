@@ -2,61 +2,69 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Доска</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доска Канбан</title>
+    <style>
+        /* Добавляем стиль для карточек */
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Kanban Доска</h1>
+    <h1>Доска Канбан</h1>
 
-    <a href="{% url 'create_card' %}">Создать новую карточку</a>
+    <a href="{% url 'create_card' %}"><button>Создать карточку</button></a>
 
-    <div class="kanban-board">
-        <!-- Колонка Бэклог -->
-        <div class="kanban-column">
-            <h2>Бэклог</h2>
+    <div>
+        <h2>Бэклог</h2>
+        <ul>
             {% for card in backlog %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
-                </div>
-            {% empty %}
-                <p>Нет задач в Бэклоге.</p>
-            {% endfor %}
-        </div>
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
 
-        <!-- Колонка В процессе -->
-        <div class="kanban-column">
-            <h2>В процессе</h2>
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>В процессе</h2>
+        <ul>
             {% for card in in_progress %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
-                </div>
-            {% empty %}
-                <p>Нет задач в процессе выполнения.</p>
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
             {% endfor %}
-        </div>
-
-        <!-- Колонка Выполнено -->
-        <div class="kanban-column">
-            <h2>Выполнено</h2>
+        </ul>
+        
+        <h2>Выполнено</h2>
+        <ul>
             {% for card in done %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
-                </div>
-            {% empty %}
-                <p>Нет выполненных задач.</p>
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
             {% endfor %}
-        </div>
+        </ul>
     </div>
+
+
+    <form action="{% url 'export_cards_to_excel' %}" method="get">
+        <button type="submit">Экспорт в Excel</button>
+    </form>
 </body>
 </html>
