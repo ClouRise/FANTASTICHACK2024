@@ -14,7 +14,6 @@
     font-family: gotham_medium;
     src: url(./fonts/gotham_medium.otf);
 }
-
 .gotham-bold{
     font-family: gotham_bold;
 }
@@ -26,6 +25,15 @@
 }
 .gotham-medium{
     font-family: gotham_medium;
+}
+.add-task{
+    color: #1C0C38;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+.add-task:hover{
+    color: #925FF0;
+    transition: all 0.1s ease-in-out;
 }
 
 .void-purple-button{
