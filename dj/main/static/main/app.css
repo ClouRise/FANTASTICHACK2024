@@ -1,0 +1,53 @@
+@font-face {
+    font-family: gotham_bold;
+    src: url(./fonts/gotham_bold.otf);
+}
+@font-face {
+    font-family: gotham_book;
+    src: url(./fonts/gotham_book.otf);
+}
+@font-face {
+    font-family: gotham_light;
+    src: url(./fonts/gotham_light.otf);
+}
+@font-face {
+    font-family: gotham_medium;
+    src: url(./fonts/gotham_medium.otf);
+}
+
+.gotham-bold{
+    font-family: gotham_bold;
+}
+.gotham-book{
+    font-family: gotham_book;
+}
+.gotham-light{
+    font-family: gotham_light;
+}
+.gotham-medium{
+    font-family: gotham_medium;
+}
+
+.search-input{
+    background-image: url("./search-normal.svg");
+    background-repeat: no-repeat;
+    background-size: 8%;
+    background-position-x: 5%;
+    background-position-y: center;
+    padding-left: 40px!important;
+    box-sizing: border-box;
+    border: none!important;
+    font-family: gotham_book;
+}
+.search-input::placeholder{
+    color: #6D6D6D;
+}
+.search-input:focus{
+    box-shadow: none!important;
+}
+.row{
+    margin: 0!important;
+}
+.col-4{
+    margin: 0!important;
+}
