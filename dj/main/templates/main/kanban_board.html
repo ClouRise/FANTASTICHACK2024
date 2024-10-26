@@ -34,33 +34,41 @@
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" role="button" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
+                                    <div class="modal-dialog modal-dialog-centered" >
+                                      <div class="modal-content" style="border-radius: 25px;">
+                                        <div class="modal-header p-4" style="border-radius: 15px 15px 0 0 ;">
                                           <h1 class="modal-title fs-5" id="staticBackdropLabel">Добавление задачи</h1>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body p-4">
                                             <form>
-                                                <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
-                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                  <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+                                                <div class="mb-4">
+                                                    <p class="gotham-light mb-1">Название задачи:</p>
+                                                    <input class="in-card" placeholder="Разработать ..." name="" id="">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
-                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <div class="mb-4">
+                                                    <p class="gotham-light mb-1">Описание:</p>
+                                                    <textarea id="cardDescription" class="ta-card" name="" id=""></textarea>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
-                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <div class="mb-4">
+                                                    <p class="gotham-light mb-1">Исполнитель:</p>
+                                                    <input class="in-card" placeholder="Олег Олегович" type="text">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Отправить</button>
-                                              </form>
+                                                <div class="mb-4">
+                                                    <p class="gotham-light mb-1">Этап:</p>
+                                                    <select class="form-select" aria-label="Пример выбора по умолчанию">
+                                                        <option selected>Откройте это меню выбора</option>
+                                                        <option value="1">Беклог</option>
+                                                        <option value="2">В процессе</option>
+                                                        <option value="3">Выполнено</option>
+                                                      </select>
+                                                </div>
+
+                                            </form>
                                         </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                          <button type="button" class="btn btn-primary">Понял</button>
+                                        <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
+                                          <a type="button" class="text-decoration-none" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                                          <button type="button" class=" btn-purple">Опубликовать</button>
                                         </div>
                                       </div>
                                     </div>
