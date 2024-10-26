@@ -1,62 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load static %}
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Доска</title>
-</head>
-<body>
-    <h1>Kanban Доска</h1>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "main/app.css" %}">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-4">
+        <header class="d-flex  align-items-center flex-wrap justify-content-center py-3 px-5 mb-4 border-bottom" style="background-color: black; border-radius: 50px;">
+          <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img class="me-2" src="{% static 'main/scroll.svg' %}" alt="">
+            <span class="fs-4" style="color: white" class="gotham-book">Разработка</span>
+          </div>
+    
+          <ul class="nav nav-pills  align-items-center">
+            <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
+            <li class="nav-item mx-3"><input type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="Поиск..."></li>
+            <li class="nav-item"><button type="button" class="btn d-flex align-items-center justify-content-center" style="background-color: #925FF0; height: 38px; width: 38px; "><img src="{% static 'main/user-square.svg' %}" alt="" height="28"></button></li>
+          </ul>
+        </header>
 
-    <a href="{% url 'create_card' %}">Создать новую карточку</a>
+        <div class="row" style="height: 100vh; width: 100%;">
+            <div class="col-4 ps-0">
+                <div class="mx-0 w-100 h-100 p-4" style="background-color: #F1F1F1; border-radius: 20px;">
+                    <div class="w-100" style="background-color: #925FF0; height: 50px;"> <!--header of list tasks-->
 
-    <div class="kanban-board">
-        <!-- Колонка Бэклог -->
-        <div class="kanban-column">
-            <h2>Бэклог</h2>
-            {% for card in backlog %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                    </div>
                 </div>
-            {% empty %}
-                <p>Нет задач в Бэклоге.</p>
-            {% endfor %}
-        </div>
+            </div>
+            <div class="col-4">
+                <div class="mx-0 w-100 h-100 p-4" style="background-color: #F1F1F1; border-radius: 20px;">
+                    <div class="w-100" style="background-color: #925FF0; height: 50px;"> <!--header of list tasks-->
 
-        <!-- Колонка В процессе -->
-        <div class="kanban-column">
-            <h2>В процессе</h2>
-            {% for card in in_progress %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                    </div>
                 </div>
-            {% empty %}
-                <p>Нет задач в процессе выполнения.</p>
-            {% endfor %}
-        </div>
+            </div>
+            <div class="col-4 pe-0">
+                <div class="mx-0 w-100 h-100 p-4" style="background-color: #F1F1F1; border-radius: 20px;">
+                    <div class="w-100" style="background-color: #925FF0; height: 50px;"> <!--header of list tasks-->
 
-        <!-- Колонка Выполнено -->
-        <div class="kanban-column">
-            <h2>Выполнено</h2>
-            {% for card in done %}
-                <div class="kanban-card">
-                    <h3>{{ card.title }}</h3>
-                    <p>Исполнитель: {{ card.assignee }}</p>
-                    <p>{{ card.description }}</p>
-                    <a href="{% url 'edit_card' card.pk %}">Редактировать</a> |
-                    <a href="{% url 'delete_card' card.pk %}">Удалить</a>
+                    </div>
                 </div>
-            {% empty %}
-                <p>Нет выполненных задач.</p>
-            {% endfor %}
+            </div>
         </div>
     </div>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
 </html>

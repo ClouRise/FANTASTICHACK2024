@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доска Канбан</title>
+    <style>
+        /* Добавляем стиль для карточек */
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Доска Канбан</h1>
+    <img src="{% static 'main/1.png' %}" alt="">
+    <a href="{% url 'create_card' %}"><button>Создать карточку</button></a>
+
+    <div>
+        <h2>Бэклог</h2>
+        <ul>
+            {% for card in backlog %}
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
+
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>В процессе</h2>
+        <ul>
+            {% for card in in_progress %}
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Выполнено</h2>
+        <ul>
+            {% for card in done %}
+                <li class="card">
+                    <strong>Название:</strong> {{ card.title }} <br>
+                    <strong>Исполнитель:</strong> {{ card.assignee }} <br>
+                    <strong>Описание:</strong> {{ card.description }} <br>
+                    <a href="{% url 'edit_card' card.pk %}"><button>Редактировать</button></a>
+                    <a href="{% url 'delete_card' card.pk %}"><button>Удалить</button></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <form action="{% url 'export_cards_to_excel' %}" method="get">
+        <button type="submit">Экспорт в Excel</button>
+    </form>
+</body>
+</html>
