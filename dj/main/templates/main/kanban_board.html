@@ -32,46 +32,7 @@
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Беклог</p>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" role="button" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" >
-                                      <div class="modal-content" style="border-radius: 25px;">
-                                        <div class="modal-header p-4" style="border-radius: 15px 15px 0 0 ;">
-                                          <h1 class="modal-title fs-5 gotham-bold" style="font-size: 20px;" id="staticBackdropLabel">Добавление задачи</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                                        </div>
-                                        <div class="modal-body p-4">
-                                            <form>
-                                                <div class="mb-4">
-                                                    <p class="gotham-light mb-1">Название задачи:</p>
-                                                    <input class="in-card" placeholder="Разработать ..." name="" id="">
-                                                </div>
-                                                <div class="mb-4">
-                                                    <p class="gotham-light mb-1">Описание:</p>
-                                                    <textarea id="cardDescription" class="ta-card" name="" id=""></textarea>
-                                                </div>
-                                                <div class="mb-4">
-                                                    <p class="gotham-light mb-1">Исполнитель:</p>
-                                                    <input  class="in-card" placeholder="Олег Олегович" type="text">
-                                                </div>
-                                                <div class="mb-4">
-                                                    <p class="gotham-light mb-1">Этап:</p>
-                                                    <select class="form-select" aria-label="Пример выбора по умолчанию">
-                                                        <option selected value="1">Беклог</option>
-                                                        <option value="2">В процессе</option>
-                                                        <option value="3">Выполнено</option>
-                                                      </select>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
-                                          <a type="button" class="text-decoration-none" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                          <button type="button" class=" btn-purple">Опубликовать</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                <a href="#" role="button" onclick="valueUpload('1')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
@@ -90,7 +51,7 @@
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">В процессе</p>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="gotham-bold add-task" role="button" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="#" role="button" onclick="valueUpload('2')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
@@ -109,7 +70,7 @@
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Выполнено</p>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="gotham-bold add-task" role="button" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="#" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
@@ -119,9 +80,53 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" >
+                  <div class="modal-content" style="border-radius: 25px;">
+                    <div class="modal-header p-4" style="border-radius: 15px 15px 0 0 ;">
+                      <h1 class="modal-title fs-5 gotham-bold" style="font-size: 20px;" id="staticBackdropLabel">Добавление задачи</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form>
+                            <div class="mb-4">
+                                <p class="gotham-light mb-1">Название задачи:</p>
+                                <input class="in-card" placeholder="Разработать ..." name="" id="">
+                            </div>
+                            <div class="mb-4">
+                                <p class="gotham-light mb-1">Описание:</p>
+                                <textarea id="cardDescription" class="ta-card" name="" id=""></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <p class="gotham-light mb-1">Исполнитель:</p>
+                                <input  class="in-card" placeholder="Олег Олегович" type="text">
+                            </div>
+                            <div class="mb-4">
+                                <p class="gotham-light mb-1">Этап:</p>
+                                <select class="form-select" aria-label="Пример выбора по умолчанию">
+                                    <option id="val1" value="1">Беклог</option>
+                                    <option id="val2" value="2">В процессе</option>
+                                    <option id="val3" value="3">Выполнено</option>
+                                  </select>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
+                      <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                      <button type="button" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}" alt=""> Опубликовать</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
     </div>
     <script>
+
+        function valueUpload(val){
+            document.getElementById("val"+val).selected = true;
+        }
+
         var bl_cl = document.getElementById("block_column")
         var bl_ov1 = document.getElementById("block_overflow1")
         var bl_ov2 = document.getElementById("block_overflow2")
@@ -132,6 +137,7 @@
         bl_cl.style.height = (window.screen.height - 230).toString() + "px" 
         console.log(window.screen.height)
     </script>
+
     <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
@@ -139,6 +145,7 @@
     <!-- languages (Basic Language: English/en) -->
     <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ru.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   
     <script>
 const editor = SUNEDITOR.create((document.getElementById('cardDescription') || 'cardDescription'),{
     // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
