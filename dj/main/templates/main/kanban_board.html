@@ -32,7 +32,39 @@
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Беклог</p>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="gotham-bold add-task" role="button" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="#" role="button" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Добавление задачи</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
+                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                  <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
+                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
+                                                    <textarea class="form-ta form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Отправить</button>
+                                              </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                          <button type="button" class="btn btn-primary">Понял</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>    
                         </div>
 
@@ -93,6 +125,26 @@
         bl_cl.style.height = (window.screen.height - 230).toString() + "px" 
         console.log(window.screen.height)
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+    <!-- languages (Basic Language: English/en) -->
+    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+    <script>
+            /**
+    * ID : 'suneditor_sample'
+    * ClassName : 'sun-eidtor'
+    */
+    // ID or DOM object
+    const editor = SUNEDITOR.create((document.getElementById('cardDescription') || 'cardDescription'),{
+        // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
+        // Insert options
+        // Language global object (default: en)
+        lang: SUNEDITOR_LANG['ru']
+    });
+
+    </script>
+</body>
 </html>
