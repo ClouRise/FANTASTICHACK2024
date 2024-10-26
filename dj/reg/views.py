@@ -9,10 +9,11 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('login')  # Переадресация на страницу входа
     else:
         form = RegistrationForm()
     return render(request, 'reg/register.html', {'form': form})
+
 
 # Вьюха авторизации
 def login_view(request):
