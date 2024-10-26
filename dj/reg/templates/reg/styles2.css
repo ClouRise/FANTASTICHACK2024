@@ -48,21 +48,26 @@ body {
     padding-right: 2rem;
 }
 .form-label{
-    margin-bottom: 0.2rem;
-    margin-left: 0.3rem;
+
+}
+.form-control{
+    padding: 0;
 }
 .enter-button{
-    border: none;
-    background-color: #A87FF3;
+    border: 3px solid #925FF0;
+    background-color: #ffffff;
+    color: #925FF0;
 }
 .enter-button:hover{
-    border: none;
-    background-color: #5E3A9E;
+    border: 3px solid #925FF0;
+    background-color: #925FF0;
+    color: white;
 }
 .enter-button:active{
-    border: none;
+    border: 3px solid;
     background-color: #925FF0!important;
     box-shadow: 0px 0px 7px 1px #925FF0;
+    border-color: #925FF0!important;
 }
 .enter-button:focus-visible{
     border: none;
@@ -71,7 +76,7 @@ body {
 }
 .button-heights{
     line-height: 2;
-    border-radius: 10px;
+    border-radius:15px;
 }
 .n-t{
     color: #1C0C38;
@@ -94,14 +99,13 @@ body {
     border-top-right-radius: inherit;
 }
 .form-control{
-    border: 2px solid #1C0C38;
+    border: none;
 }
 .form-control:focus{
-    border-color: #A87FF3;
+    border-color: white;
+    box-shadow: none;
 }
-.card{
-    padding-bottom: 1.3rem;
-}
+
 .button-heights::placeholder{
     color: #a1a1a1;
 }
@@ -114,3 +118,28 @@ body {
 .shadow{
     box-shadow: 0 0.5rem 1rem #1D005454!important;
 }
+textarea{
+    resize: none;
+    overflow-y: scroll;
+}
+/* Убираем кнопки прокрутки */
+::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  /* Показываем саму полосу прокрутки */
+  ::-webkit-scrollbar {
+    width: 10px; /* Ширина скроллбара */
+  }
+  
+  
+  /* Стиль для ползунка */
+  ::-webkit-scrollbar-thumb {
+    background-color: #925FF0; /* Цвет ползунка */
+    border-radius: 5px; /* Закругление углов */
+  }
+  
+  /* Изменение цвета при наведении курсора */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #5E3A9E; /* Цвет ползунка при наведении */
+  }
