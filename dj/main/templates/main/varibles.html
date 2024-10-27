@@ -40,6 +40,7 @@
         <ul>
             {% for card in in_progress %}
                 <li class="card">
+                    <input type="text" id="username" name="title" class="form-control gotham-book button-heights" style="font-size: 14pt;" placeholder="Название" value="{{ form.username.value|default_if_none:'' }}" required>
                     <strong>Название:</strong> {{ card.title }} <br>
                     <strong>Исполнитель:</strong> {{ card.assignee }} <br>
                     <strong>Описание:</strong> {{ card.description }} <br>

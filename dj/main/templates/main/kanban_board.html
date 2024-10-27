@@ -91,30 +91,29 @@
                         <form>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Название задачи:</p>
-                                <input class="in-card" placeholder="Разработать ..." name="" id="">
+                                <input class="in-card" placeholder="Разработать ..." name="" id="nameTask" value="{{ form.nameTask.value|default_if_none:'' }}">
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Описание:</p>
-                                <textarea id="cardDescription" class="ta-card" name="" id=""></textarea>
+                                <textarea class="ta-card" name="" id="description" value="{{ form.description.value|default_if_none:'' }}"></textarea>
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Исполнитель:</p>
-                                <input  class="in-card" placeholder="Олег Олегович" type="text">
+                                <input  class="in-card" placeholder="Олег Олегович" type="text" id="responsible" value="{{ form.responsible.value|default_if_none:'' }}">
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Этап:</p>
-                                <select class="form-select" aria-label="Пример выбора по умолчанию">
-                                    <option id="val1" value="1">Беклог</option>
-                                    <option id="val2" value="2">В процессе</option>
-                                    <option id="val3" value="3">Выполнено</option>
+                                <select class="form-select" aria-label="Пример выбора по умолчанию" id="step" value="{{ form.step.value|default_if_none:'' }}">
+                                    <option id="val1" value="backlog">Беклог</option>
+                                    <option id="val2" value="in_progress">В процессе</option>
+                                    <option id="val3" value="done">Выполнено</option>
                                   </select>
                             </div>
-
+                            <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
+                                <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                                <button type="button" onclick="insertValue()" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}" alt=""> Опубликовать</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
-                      <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                      <button type="button" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}" alt=""> Опубликовать</button>
                     </div>
                   </div>
                 </div>
@@ -147,7 +146,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    
     <script>
-const editor = SUNEDITOR.create((document.getElementById('cardDescription') || 'cardDescription'),{
+const editor = SUNEDITOR.create((document.getElementById('description') || 'description'),{
     // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
     // Insert options
     // Language global object (default: en)
@@ -157,6 +156,10 @@ const editor = SUNEDITOR.create((document.getElementById('cardDescription') || '
     ]
 });
 
+function insertValue(){
+    document.getElementById("description").value = editor.getContents()
+    console.log(document.getElementById("description").value)
+}
     </script>
 </body>
 </html>
