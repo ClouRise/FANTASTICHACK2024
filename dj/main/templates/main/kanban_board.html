@@ -38,7 +38,21 @@
 
                     </div>
                     <div class="w-100 px-4" id="block_overflow1" style="overflow-y: auto; height: 300px;">
+                        {% for card in backlog %}
+                            
+                            <div  class="w-100 d-flex flex-column p-4 my-4" style="border-radius: 15px; background-color: white; box-shadow: 0px 3px 12px #472a7b1c;"> <!--card template-->
+                            <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Название:</p>
+                            <p class="gotham-bold mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C;">models.TextField()</p>
+                            <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Ответственный:</p>
+                            <p class="gotham-book mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C">Иван Золо</p>
 
+                            <div class="d-flex flex-wrap justify-content-between">
+                                <button class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
+                                <button   class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
+                            </div>
+
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -57,7 +71,21 @@
 
                     </div>
                     <div class="w-100 px-4" id="block_overflow2" style="overflow-y: auto; height: 300px;">
+                        {% for card in in_progress %}
+                            
+                        <div  class="w-100 d-flex flex-column p-4 my-4" style="border-radius: 15px; background-color: white; box-shadow: 0px 3px 12px #472a7b1c;"> <!--card template-->
+                        <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Название:</p>
+                        <p class="gotham-bold mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C;">title</p>
+                        <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Ответственный:</p>
+                        <p class="gotham-book mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C">Иван Золо</p>
 
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <button class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
+                            <button   class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
+                        </div>
+
+                        </div>
+                    {% endfor %}
                     </div>
                 </div>
             </div>
@@ -76,7 +104,21 @@
 
                     </div>
                     <div class="w-100 px-4" id="block_overflow3" style="overflow-y: auto; height: 300px;">
+                        {% for card in done %}
+                            
+                            <div  class="w-100 d-flex flex-column p-4 my-4" style="border-radius: 15px; background-color: white; box-shadow: 0px 3px 12px #472a7b1c;"> <!--card template-->
+                            <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Название:</p>
+                            <p class="gotham-bold mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C;">title</p>
+                            <p class="gotham-light" style="font-size: 10pt; color: #1C0C38">Ответственный:</p>
+                            <p class="gotham-book mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C">Иван Золо</p>
 
+                            <div class="d-flex flex-wrap justify-content-between">
+                                <button class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
+                                <button   class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
+                            </div>
+
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -91,7 +133,7 @@
                         <form>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Название задачи:</p>
-                                <input class="in-card" placeholder="Разработать ..." name="" id="nameTask" value="{{ form.nameTask.value|default_if_none:'' }}">
+                                <input class="in-card" placeholder="Разработать ..." name="" id="title" value="{{ form.title.value|default_if_none:'' }}">
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Описание:</p>
@@ -99,11 +141,11 @@
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Исполнитель:</p>
-                                <input  class="in-card" placeholder="Олег Олегович" type="text" id="responsible" value="{{ form.responsible.value|default_if_none:'' }}">
+                                <input  class="in-card" placeholder="Олег Олегович" type="text" id="assignee" value="{{ form.assignee.value|default_if_none:'' }}">
                             </div>
                             <div class="mb-4">
                                 <p class="gotham-light mb-1">Этап:</p>
-                                <select class="form-select" aria-label="Пример выбора по умолчанию" id="step" value="{{ form.step.value|default_if_none:'' }}">
+                                <select class="form-select" aria-label="Пример выбора по умолчанию" id="status" value="{{ form.status.value|default_if_none:'' }}">
                                     <option id="val1" value="backlog">Беклог</option>
                                     <option id="val2" value="in_progress">В процессе</option>
                                     <option id="val3" value="done">Выполнено</option>
@@ -111,7 +153,9 @@
                             </div>
                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                <button type="button" onclick="insertValue()" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}" alt=""> Опубликовать</button>
+                                <a href="{% url 'create_card' %}" class="btn btn-purple">
+                                <button type="button" onclick="insertValue()" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
+                                </a>
                             </div>
                         </form>
                     </div>
