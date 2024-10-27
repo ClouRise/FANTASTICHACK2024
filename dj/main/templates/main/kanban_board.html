@@ -17,7 +17,7 @@
           </div>
     
           <ul class="nav nav-pills  align-items-center">
-            <li class="nav-item me-3"><a href=""><img src="{% static 'main/document-download.svg' %}" alt=""></a></li>
+            <li class="nav-item me-3"><a href="export/"><img src="{% static 'main/document-download.svg' %}" alt=""></a></li>
             <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
             <li class="nav-item mx-3"><input type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="Поиск..."></li>
             <li class="nav-item"><button type="button" class="btn d-flex align-items-center justify-content-center" style="background-color: #925FF0; height: 38px; width: 38px; "><img src="{% static 'main/user-square.svg' %}" alt="" height="28"></button></li>
@@ -35,8 +35,8 @@
                                 <a style="display: block;" class="ms-2" id="arrow1" onclick="showCards('1')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" role="button" onclick="valueUpload('1')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
-                            </div>   
+                                <a href="{% url 'create_card' %}" role="button" onclick="valueUpload('1')" class="gotham-bold add-task" role="button"  style="font-size: 10pt;">+ Добавить задачу</a>
+                            </div>    
                         </div>
 
                     </div>
@@ -84,8 +84,8 @@
                                             </div>
                                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                                <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Удалить</a>
-                                                <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
+                                                <a type="button" href="{% url 'delete_card' card.id %}" class="text-decoration-none me-4" style="color: #373737;" >Удалить</a>
+                                                <button type="submit" href="{% url 'edit_card' card.id %}" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                                 </a>
                                             </div>
                                         </form>
@@ -110,7 +110,7 @@
                                 <a style="display: block;" class="ms-2" id="arrow2" onclick="showCards('2')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" role="button" onclick="valueUpload('2')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="{% url 'create_card' %}" role="button" onclick="valueUpload('2')" class="gotham-bold add-task" role="button" style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
@@ -160,7 +160,7 @@
                                         </div>
                                         <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                             <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                            <a type="button" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
+                                            <a type="button" href="{% url 'delete_card' card.id %}" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
                                             <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                             </a>
                                         </div>
@@ -186,7 +186,7 @@
                                 <a style="display: block;" class="ms-2" id="arrow3" onclick="showCards('3')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="{% url 'create_card' %}" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button"  style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
@@ -236,9 +236,11 @@
                                             </div>
                                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                                <a type="button" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
-                                                <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
-                                                </a>
+                                                <a type="button" href="{% url 'delete_card' card.id %}" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
+                                                <form action="edit_card">
+                                                <button type="button" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
+                                                </form>
+                                            </a>
                                             </div>
                                         </form>
                                     </div>
@@ -284,7 +286,7 @@
                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
                                 <a href="{% url 'create_card' %}" class="btn btn-purple">
-                                <button type="submit" onclick="insertValue()" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
+                               <button type="submit" onclick="insertValue()" class=" btn-purple"> Опубликовать</button>
                                 </a>
                             </div>
                         </form>

@@ -6,6 +6,7 @@ from .models import Card
 from .forms import CardForm
 
 def kanban_board(request):
+    # Получаем карточки по статусу
     backlog = Card.objects.filter(status='backlog')
     in_progress = Card.objects.filter(status='in_progress')
     done = Card.objects.filter(status='done')
@@ -21,14 +22,22 @@ def kanban_board(request):
     else:
         cards = Card.objects.all()
 
+    # Если это POST-запрос, то обрабатываем сохранение изменений карточки
+    if request.method == 'POST':
+        card_id = request.POST.get('card_id')
+        card = get_object_or_404(Card, pk=card_id)
+        form = CardForm(request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect('kanban_board')
+
     return render(request, 'main/kanban_board.html', {
         'backlog': backlog,
         'in_progress': in_progress,
         'done': done,
-        'cards': cards,  # Передаем найденные карточки
-        'search_query': search_query,  # Передаем запрос поиска для отображения
+        'cards': cards,
+        'search_query': search_query,
     })
-
 
 def create_card(request):
     if request.method == 'POST':
@@ -49,14 +58,13 @@ def edit_card(request, pk):
             return redirect('kanban_board')
     else:
         form = CardForm(instance=card)
-    return render(request, 'main/card_form.html', {'form': form})
+    return render(request, 'main/kanban_board.html', {'form': form})
 
 def delete_card(request, pk):
+
     card = get_object_or_404(Card, pk=pk)
-    if request.method == 'POST':
-        card.delete()
-        return redirect('kanban_board')
-    return render(request, 'main/card_confirm_delete.html', {'card': card})
+    card.delete()
+    return redirect('kanban_board')
 
 def export_cards_to_excel(request):
 
