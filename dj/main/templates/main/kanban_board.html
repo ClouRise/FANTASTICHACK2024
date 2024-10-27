@@ -8,7 +8,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-  <body>
+  <body class="bg">
     <div class="container mt-4">
         <header class="d-flex  align-items-center flex-wrap justify-content-center py-3 px-5 mb-4 border-bottom" style="background-color: black; border-radius: 50px;">
           <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -24,17 +24,19 @@
           </ul>
         </header>
         <div class="row mb-4" id="block_column" style="height: 100vh; width: 100%;">
-            <div class="col-4 ps-0">
+
+            <div id="left-block" class="col-4 ps-0">
                 <div class="mx-0 w-100 h-100 d-flex flex-column" style="background-color: #F1F1F1; border-radius: 20px;">
                     <div class="w-100 flex-wrap p-4 pb-2" style="height: auto;"> <!--header of list tasks-->
-                        <div class="d-flex flex-wrap justify-content-between" style=" border-bottom: 1px solid black;">
+                        <div class="d-flex flex-wrap justify-content-between" id="b1" style=" border-bottom: 1px solid black;">
                             <div class="d-flex align-items-center mb-2" style="width: 200px;">
                                 <img src="{% static 'main/task-square.svg' %}" alt="">
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Беклог</p>
+                                <a style="display: block;" class="ms-2" id="arrow1" onclick="showCards('1')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" role="button" onclick="valueUpload('1')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
-                            </div>    
+                            </div>   
                         </div>
 
                     </div>
@@ -97,13 +99,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+
+            <div id="center-block" class="col-4">
                 <div class="mx-0 w-100 h-100 d-flex flex-column" style="background-color: #F1F1F1; border-radius: 20px;">
                     <div class="w-100 flex-wrap p-4 pb-2" style="height: auto;"> <!--header of list tasks-->
-                        <div class="d-flex flex-wrap justify-content-between" style=" border-bottom: 1px solid black;">
+                        <div class="d-flex flex-wrap justify-content-between" id="b2" style=" border-bottom: 1px solid black;">
                             <div class="d-flex align-items-center mb-2" style="width: 200px;">
                                 <img src="{% static 'main/clock.svg' %}" alt="">
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">В процессе</p>
+                                <a style="display: block;" class="ms-2" id="arrow2" onclick="showCards('2')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" role="button" onclick="valueUpload('2')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
@@ -171,13 +175,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 pe-0">
+
+            <div id="right-block" class="col-4 pe-0">
                 <div class="mx-0 w-100 h-100 d-flex flex-column" style="background-color: #F1F1F1; border-radius: 20px;">
                     <div class="w-100 flex-wrap p-4 pb-2" style="height: auto;"> <!--header of list tasks-->
-                        <div class="d-flex flex-wrap justify-content-between" style=" border-bottom: 1px solid black;">
+                        <div class="d-flex flex-wrap justify-content-between" id="b3" style=" border-bottom: 1px solid black;">
                             <div class="d-flex align-items-center mb-2" style="width: 200px;">
                                 <img src="{% static 'main/tick-circle.svg' %}" alt="">
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Выполнено</p>
+                                <a style="display: block;" class="ms-2" id="arrow3" onclick="showCards('3')" role="button"><img src="{% static 'main/arrow-right.svg' %}" alt=""></a>
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
@@ -245,6 +251,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" >
                   <div class="modal-content" style="border-radius: 25px;">
@@ -297,10 +304,10 @@
         var bl_ov1 = document.getElementById("block_overflow1")
         var bl_ov2 = document.getElementById("block_overflow2")
         var bl_ov3 = document.getElementById("block_overflow3")
-        bl_ov1.style = "overflow-y: auto; height: " + (window.screen.height - 330).toString() + "px" 
-        bl_ov2.style = "overflow-y: auto; height: " + (window.screen.height - 330).toString() + "px" 
-        bl_ov3.style = "overflow-y: auto; height: " + (window.screen.height - 330).toString() + "px" 
-        bl_cl.style.height = (window.screen.height - 230).toString() + "px" 
+        bl_ov1.style = "overflow-y: auto; height: " + (window.screen.height - 370).toString() + "px" 
+        bl_ov2.style = "overflow-y: auto; height: " + (window.screen.height - 370).toString() + "px" 
+        bl_ov3.style = "overflow-y: auto; height: " + (window.screen.height - 370).toString() + "px" 
+        bl_cl.style.height = (window.screen.height - 270).toString() + "px" 
         console.log(window.screen.height)
     </script>
 
@@ -331,6 +338,86 @@ function insertValueCard(id){
     document.getElementById("description" + id.toString()).value = editor.getContents()
     console.log(document.getElementById("description").value)
 }
+    </script>
+
+    <script>
+        lb = document.getElementById("left-block")
+        bo1 = document.getElementById("block_overflow1")
+        cb = document.getElementById("center-block")
+        bo2 = document.getElementById("block_overflow2")
+        rb = document.getElementById("right-block")
+        bo3 = document.getElementById("block_overflow3")
+        bk = document.getElementById("block_column")
+        a1 = document.getElementById("arrow1")
+        a2 = document.getElementById("arrow2")
+        a3 = document.getElementById("arrow3")
+        if (document.documentElement.clientWidth < 993) {
+            bo1.style = "display: none"
+            bo2.style = "display: none"
+            bo3.style = "display: none"
+            document.getElementById("b1").style = "display: none"
+            document.getElementById("b2").style = "display: none"
+            document.getElementById("b3").style = "display: none"
+            lb.className = "w-100 mb-3"
+            cb.className = "w-100 mb-3"
+            rb.className = "w-100 mb-3"
+            bk.className = "mb-4"
+            a1.style = "display: block"
+            a2.style = "display: block"
+            a3.style = "display: block"
+            var flag1 = false
+            var flag2 = false
+            var flag3 = false
+            function showCards(id){
+                if(id == "1"){
+                    flag1 = !flag1
+                }
+                if(id == "2"){
+                    flag2 = !flag2
+                }
+                if(id == "3"){
+                    flag3 = !flag3
+                }
+
+                if(id == "1"){
+                    if(flag1 == true){
+                    document.getElementById("block_overflow"+id).style = "height: auto"
+                    document.getElementById("b1").style = "border-bottom: 1px solid black"
+                    a1.style = "transform: rotate(90deg)"
+                    } else {
+                        document.getElementById("block_overflow"+id).style = "display: none"
+                        document.getElementById("b1").style = "display: none"
+                        a1.style = "transform: rotate(0deg)"
+                    }
+                }
+                if(id == "2"){
+                    if(flag2 == true){
+                    document.getElementById("block_overflow"+id).style = "height: auto"
+                    document.getElementById("b2").style = "border-bottom: 1px solid black"
+                    a2.style = "transform: rotate(90deg)"
+                    } else {
+                        document.getElementById("block_overflow"+id).style = "display: none"
+                        document.getElementById("b2").style = "display: none"
+                        a2.style = "transform: rotate(0deg)"
+                    }
+                }
+                if(id == "3"){
+                    if(flag3 == true){
+                    document.getElementById("block_overflow"+id).style = "height: auto"
+                    document.getElementById("b3").style = "border-bottom: 1px solid black"
+                    a3.style = "transform: rotate(90deg)"
+                    } else {
+                        document.getElementById("block_overflow"+id).style = "display: none"
+                        document.getElementById("b3").style = "display: none"
+                        a3.style = "transform: rotate(0deg)"
+                    }
+                }
+            }
+        } else {
+            a1.style = "display: none"
+            a2.style = "display: none"
+            a3.style = "display: none"
+        }
     </script>
 </body>
 </html>
