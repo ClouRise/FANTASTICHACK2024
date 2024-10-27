@@ -81,8 +81,8 @@
                         <p class="gotham-book mb-3" style="font-size: 16pt; position: relative; top: -5px; color: #15003C">{{ card.assignee }}</p>
 
                         <div class="d-flex flex-wrap justify-content-between">
-                            <button class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
-                            <button data-bs-toggle="modal" data-bs-target="#{{ card.id }}"  class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
+                            <button data-bs-toggle="modal" data-bs-target="#{{ card.id }}" class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
+                            <button  class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
                         </div>
 
                         <div class="modal fade" id="{{ card.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -96,19 +96,19 @@
                                     <form>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Название задачи:</p>
-                                            <input class="in-card" placeholder="Разработать ..." name="" id="title{{card.id}}" value="{{ card.title }}">
+                                            <input class="in-card" placeholder="Разработать ..." name="" id="title" value="{{ card.title }}">
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Описание:</p>
-                                            <textarea class="ta-card" name="" id="description{{card.id}}" value="{{ card.description }}"></textarea>
+                                            <textarea class="ta-card" name="" id="description" value="{{ card.description }}"></textarea>
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Исполнитель:</p>
-                                            <input  class="in-card" placeholder="Олег Олегович" type="text" id="assignee{{card.id}}" value="{{ card.assignee }}">
+                                            <input  class="in-card" placeholder="Олег Олегович" type="text" id="assignee" value="{{ card.assignee }}">
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Этап:</p>
-                                            <select class="form-select" aria-label="Пример выбора по умолчанию" id="status{{card.id}}" value="{{ card.status }}" >
+                                            <select class="form-select" aria-label="Пример выбора по умолчанию" id="status" value="{{ card.status }}" >
                                                 <option id="val1" value="backlog">Беклог</option>
                                                 <option id="val2" value="in_progress">В процессе</option>
                                                 <option id="val3" value="done">Выполнено</option>
@@ -139,7 +139,7 @@
                                 <p class="gotham-bold ms-1" style="font-size: 18pt;">Выполнено</p>
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <a href="#" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 10pt;">+ Добавить задачу</a>
+                                <a href="{% url 'create_card' %}" role="button" onclick="valueUpload('3')" class="gotham-bold add-task" role="button"  style="font-size: 10pt;">+ Добавить задачу</a>
                             </div>    
                         </div>
 
