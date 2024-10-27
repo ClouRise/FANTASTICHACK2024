@@ -2,15 +2,51 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>{% if form.instance.pk %}Редактировать карточку{% else %}Создать карточку{% endif %}</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        h2 {
+            color: #343a40;
+            text-align: center; /* Centering the heading */
+        }
+        .btn-purple {
+            background-color: #925FF0;
+            color: white;
+        }
+        .btn-purple:hover {
+            background-color: #7A4BD8;
+        }
+        .form-text {
+            text-align: justify; /* Justifying text in form elements */
+        }
+    </style>
 </head>
 <body>
-    <h2>{% if form.instance.pk %}Редактировать карточку{% else %}Создать карточку{% endif %}</h2>
-    <form  method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% if form.instance.pk %}Сохранить изменения{% else %}Создать{% endif %}</button>
-        <a href="{% url 'kanban_board' %}">Отмена</a>
-    </form>
+    <div class="form-container">
+        <h2>{% if form.instance.pk %}Редактировать карточку{% else %}Создать карточку{% endif %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-text">
+                {{ form.as_p }}
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-purple">{% if form.instance.pk %}Сохранить изменения{% else %}Создать{% endif %}</button>
+                <a href="{% url 'kanban_board' %}" class="btn btn-outline-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
