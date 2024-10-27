@@ -18,6 +18,7 @@
     
           <ul class="nav nav-pills  align-items-center">
             <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
+            <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
             <li class="nav-item mx-3"><input type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="Поиск..."></li>
             <li class="nav-item"><button type="button" class="btn d-flex align-items-center justify-content-center" style="background-color: #925FF0; height: 38px; width: 38px; "><img src="{% static 'main/user-square.svg' %}" alt="" height="28"></button></li>
           </ul>
@@ -81,10 +82,10 @@
 
                         <div class="d-flex flex-wrap justify-content-between">
                             <button class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/setting-b.svg' %}" alt="" height="23">Действия</button>
-                            <button   class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
+                            <button data-bs-toggle="modal" data-bs-target="#{{ card.id }}"  class="void-purple-button ps-1 d-flex align-items-center mb-2"><img class="me-1" src="{% static 'main/user-cirlce-add.svg' %}" alt="" height="23">Исполнитель</button>
                         </div>
 
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="{{ card.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" >
                               <div class="modal-content" style="border-radius: 25px;">
                                 <div class="modal-header p-4" style="border-radius: 15px 15px 0 0 ;">
@@ -95,19 +96,19 @@
                                     <form>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Название задачи:</p>
-                                            <input class="in-card" placeholder="Разработать ..." name="" id="title" value="{{ card.title }}" readonly>
+                                            <input class="in-card" placeholder="Разработать ..." name="" id="title{{card.id}}" value="{{ card.title }}">
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Описание:</p>
-                                            <textarea class="ta-card" name="" id="description" value="{{ card.description }}" readonly></textarea>
+                                            <textarea class="ta-card" name="" id="description{{card.id}}" value="{{ card.description }}"></textarea>
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Исполнитель:</p>
-                                            <input  class="in-card" placeholder="Олег Олегович" type="text" id="assignee" value="{{ card.assignee }}" readonly>
+                                            <input  class="in-card" placeholder="Олег Олегович" type="text" id="assignee{{card.id}}" value="{{ card.assignee }}">
                                         </div>
                                         <div class="mb-4">
                                             <p class="gotham-light mb-1">Этап:</p>
-                                            <select class="form-select" aria-label="Пример выбора по умолчанию" id="status" value="{{ card.status }}" readonly>
+                                            <select class="form-select" aria-label="Пример выбора по умолчанию" id="status{{card.id}}" value="{{ card.status }}" >
                                                 <option id="val1" value="backlog">Беклог</option>
                                                 <option id="val2" value="in_progress">В процессе</option>
                                                 <option id="val3" value="done">Выполнено</option>
@@ -115,8 +116,7 @@
                                         </div>
                                         <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                             <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
-                                            <a href="{% url 'create_card' %}" class="btn btn-purple">
-                                            <button type="submit" onclick="insertValue()" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Изменить</button>
+                                            <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                             </a>
                                         </div>
                                     </form>
@@ -243,6 +243,10 @@ const editor = SUNEDITOR.create((document.getElementById('description') || 'desc
 
 function insertValue(){
     document.getElementById("description").value = editor.getContents()
+    console.log(document.getElementById("description").value)
+}
+function insertValueCard(id){
+    document.getElementById("description" + id.toString()).value = editor.getContents()
     console.log(document.getElementById("description").value)
 }
     </script>
