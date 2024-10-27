@@ -53,10 +53,8 @@ def edit_card(request, pk):
 
 def delete_card(request, pk):
     card = get_object_or_404(Card, pk=pk)
-    if request.method == 'POST':
-        card.delete()
-        return redirect('kanban_board')
-    return render(request, 'main/card_confirm_delete.html', {'card': card})
+    card.delete()
+    return redirect('kanban_board')
 
 def export_cards_to_excel(request):
 
