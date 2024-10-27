@@ -17,7 +17,7 @@
           </div>
     
           <ul class="nav nav-pills  align-items-center">
-            <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
+            <li class="nav-item me-3"><a href=""><img src="{% static 'main/document-download.svg' %}" alt=""></a></li>
             <li class="nav-item"><img src="{% static 'main/sort.svg' %}" alt=""></li>
             <li class="nav-item mx-3"><input type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="Поиск..."></li>
             <li class="nav-item"><button type="button" class="btn d-flex align-items-center justify-content-center" style="background-color: #925FF0; height: 38px; width: 38px; "><img src="{% static 'main/user-square.svg' %}" alt="" height="28"></button></li>
@@ -82,6 +82,7 @@
                                             </div>
                                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                                                <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Удалить</a>
                                                 <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                                 </a>
                                             </div>
@@ -155,6 +156,7 @@
                                         </div>
                                         <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                             <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                                            <a type="button" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
                                             <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                             </a>
                                         </div>
@@ -228,6 +230,7 @@
                                             </div>
                                             <div class="modal-footer" style="border-radius: 0 0 15px 15px;">
                                                 <a type="button" class="text-decoration-none me-4" style="color: #373737;" data-bs-dismiss="modal">Закрыть</a>
+                                                <a type="button" class="text-decoration-none me-4" style="color: #373737;">Удалить</a>
                                                 <button type="submit" onclick="insertValueCard('{{card.id}}')" class=" btn-purple"><img src="{% static 'main/arrow-up.svg' %}"  alt=""> Опубликовать</button>
                                                 </a>
                                             </div>
